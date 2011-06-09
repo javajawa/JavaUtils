@@ -9,17 +9,22 @@ import java.io.File;
 public final class FileUtils
 {
 
-  public static String realtivePath(File base, File target)
+  public static String realtivePath(final File base, final File target)
   {
+		final File baseDir;
     if (!base.isDirectory())
     {
-      base = base.getParentFile();
+      baseDir = base.getParentFile();
     }
+		else
+		{
+			baseDir = base;
+		}
 
-    String[] fromPath = explodedPath(base);
-    String[] toPath = explodedPath(target);
+    final String[] fromPath = explodedPath(baseDir);
+    final String[] toPath = explodedPath(target);
 
-    int common;
+    final int common;
     int i;
 
     for (i = 0; i < Math.min(fromPath.length, toPath.length); i++)
