@@ -3,24 +3,23 @@ package com.harcourtprogramming.utils;
 import java.io.File;
 
 /**
- * File Untilites funtions
+ * TODO: Document FileUtils
+ * File Utility functions
  * @author Benedict Harcourt
  */
 public final class FileUtils
 {
-	public static String realtivePath(final File base, final File target)
-	{
-		final File baseDir;
-		if (!base.isDirectory())
-		{
-			baseDir = base.getParentFile();
-		}
-		else
-		{
-			baseDir = base;
-		}
 
-		final String[] fromPath = explodedPath(baseDir);
+	/**
+	 * TODO: Document relativePath(File, File)
+	 * @param base
+	 * @param target
+	 * @return
+	 */
+	public static String realtivePath(File base, File target)
+	{
+		final String[] fromPath = explodedPath(
+		        base.isDirectory() ? base.getParentFile() : base);
 		final String[] toPath = explodedPath(target);
 
 		final int common;
@@ -60,15 +59,28 @@ public final class FileUtils
 
 	}
 
+	/**
+	 * TODO: Document explodedPath(File)
+	 * @param f
+	 * @return
+	 */
 	public static String[] explodedPath(File f)
 	{
+		/*
+		 * Java's String .split method uses Regex at an underlying level.
+		 * This means the \ is a reserved character, and needs to be escaped.
+		 * Damn you, Java, damn you.
+		 */
 		if (File.separatorChar == '\\')
 		{
-			return f.getPath().split("\\\\"); // Because I hate you java and you lake of split on char or string.
+			return f.getPath().split("\\\\");
 		}
 		return f.getPath().split(File.separator);
 	}
 
+	/**
+	 * TODO: Document FileUtils()
+	 */
 	private FileUtils()
 	{
 		// Nothing to see here. Move along, citizen.
