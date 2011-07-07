@@ -42,13 +42,13 @@ public final class FileUtils
 
 		StringBuilder ret = new StringBuilder();
 
-		for (i = common; i < fromPath.length; i++)
+		for (i = common; i < fromPath.length - 1; ++i)
 		{
 			ret.append("..");
 			ret.append(File.separatorChar);
 		}
 
-		for (i = common; i < toPath.length; i++)
+		for (i = common; i < toPath.length; ++i)
 		{
 			ret.append(toPath[i]);
 			ret.append(File.separatorChar);
