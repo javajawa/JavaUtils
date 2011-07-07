@@ -29,4 +29,18 @@ public final class Sets
 
 		return u;
 	}
+
+	public static <A, B> Set<Tuple<A, B>> product(Set<? extends A> a,
+					Set<? extends B> b)
+	{
+		final Set<Tuple<A, B>> ret = new HashSet<Tuple<A, B>>(a.size() * b.size());
+		for (A aVal : a)
+		{
+			for (B bVal : b)
+			{
+				ret.add(new Tuple<A, B>(aVal, bVal));
+			}
+		}
+		return ret;
+	}
 }
